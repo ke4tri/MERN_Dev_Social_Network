@@ -4,7 +4,7 @@ const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
-const { check, validationResult } = require("express-validator");
+const { check, validationResult } = require("express-validator"); // sends back a responce if something isn't valid
 
 const User = require("../../models/User");
 
@@ -29,7 +29,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, email, password } = req.body;
+    const { name, email, password } = req.body; //destructuring req.body.name
 
     try {
       // See if user exists
@@ -88,5 +88,12 @@ router.post(
 );
 
 router.get("/", (req, res) => res.send("Profile user"));
+
+//CORE BASIC POST REQUEST
+
+// router.post('/', (req,res) => {
+//   console.log(req.body);
+//   res.send('User route');
+// });
 
 module.exports = router;
